@@ -8,5 +8,5 @@ export function GET() {
         { id: 3, name: "Product C", price: 30, description: "Description for Product C"  },
     ];
     
-    return NextResponse.json(products);
+    return NextResponse.json({products});
 }   
