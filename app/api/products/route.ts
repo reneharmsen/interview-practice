@@ -1,5 +1,4 @@
 import { Product } from "@/lib/definitions";
-import { NextRequest, NextResponse } from 'next/server';
 
 export function GET() {
     const products: Product[] = [
@@ -8,5 +7,5 @@ export function GET() {
         { id: 3, name: "Product C", price: 30, description: "Description for Product C"  },
     ];
     
-    return NextResponse.json({products});
+    return Response.json({products});
 }   
