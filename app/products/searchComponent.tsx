@@ -1,37 +1,37 @@
-'use client';
+'use client'
 
-import { getData } from '@/lib/data';
-import { Product } from '@/lib/definitions';
-import { useEffect, useState } from 'react';
+import { getData } from '@/lib/data'
+import { Product } from '@/lib/definitions'
+import { useEffect, useState } from 'react'
 
 export default function SearchComponent({ query = '' }: { query?: string }) {
-    const [value, setValue] = useState(query);
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [value, setValue] = useState(query)
+    const [products, setProducts] = useState<Product[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const data = await getData();
-                setProducts(data.products);
+                const data = await getData()
+                setProducts(data.products)
             } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to fetch products');
+                setError(err instanceof Error ? err.message : 'Failed to fetch products')
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
+        }
 
-        fetchProducts();
-    }, []);
+        fetchProducts()
+    }, [])
 
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(value.toLowerCase()) ||
         product.description.toLowerCase().includes(value.toLowerCase())
-    );
+    )
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>Error: {error}</div>
 
     return (
         <div className="w-full max-w-4xl mx-auto p-4">
@@ -66,5 +66,5 @@ export default function SearchComponent({ query = '' }: { query?: string }) {
                 </p>
             )}
         </div>
-    );
+    )
 }
