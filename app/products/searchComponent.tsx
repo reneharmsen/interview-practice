@@ -1,7 +1,8 @@
 'use client'
 
-import { getData } from '@/lib/data'
+import { getProductData } from '@/lib/data'
 import { Product } from '@/lib/definitions'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function SearchComponent({ query = '' }: { query?: string }) {
@@ -13,7 +14,7 @@ export default function SearchComponent({ query = '' }: { query?: string }) {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const data = await getData()
+                const data = await getProductData()
                 setProducts(data.products)
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to fetch products')
@@ -57,6 +58,7 @@ export default function SearchComponent({ query = '' }: { query?: string }) {
                             <p className="text-lg font-bold mt-2">
                                 ${product.price.toFixed(2)}
                             </p>
+                            <Link href={`/products/${product.id}`} className="text-blue-500 hover:underline mt-2 inline-block">Go there</Link>
                         </li>
                     ))}
                 </ul>
