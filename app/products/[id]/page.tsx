@@ -45,9 +45,9 @@ export default async function ProductPage({ params }: Props) {
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       
-      <Suspense fallback={<p>... checking stock ...</p>}>
+      {/* <Suspense fallback={<p>... checking stock ...</p>}>git pull
         <ProductStock/>
-      </Suspense>      
+      </Suspense>       */}
 
       <p>This page was (pre)rendered at {new Date().toLocaleTimeString()}.</p>
       ----------------
