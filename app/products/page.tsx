@@ -15,6 +15,8 @@ export default async function Page(props: {
     || ''
 
   return (
-    <SearchComponent query={query} />   
+    <>
+    <SearchComponent query={query} />  
+    </> 
   )
 }
